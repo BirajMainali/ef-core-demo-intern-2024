@@ -1,0 +1,13 @@
+﻿@model List<Efcore_demo.Entities.Todo>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<ul>
+    @foreach (var todo in Model)
+    {
+        <li>@todo.Title</li>
+        <li>@todo.IsCompleted</li>
+        <li>@todo.Description</li>
+    }
+</ul>
