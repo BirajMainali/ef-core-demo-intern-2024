@@ -11,7 +11,5 @@ public class ApplicationDbContext : IdentityDbContext
     {
     }
 
-    // This DbSet will be used to query and save instances of Todo
-    public DbSet<Todo> Todos { get; set; }
-    public DbSet<Contact> Contacts { get; set; }
+    private DbSet<Student> Students { get; set; }
 }

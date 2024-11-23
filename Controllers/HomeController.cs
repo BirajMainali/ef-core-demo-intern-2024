@@ -1,6 +1,6 @@
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using Efcore_demo.Data;
-using Efcore_demo.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Efcore_demo.Models;
 
@@ -20,42 +20,14 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
-        var todos = _context.Todos.ToList();
-        return View(todos);
-    }
-
-    public IActionResult Edit(long id)
-    {
-        var item = _context.Todos.FirstOrDefault(x => x.Id == id);
-        item.Title = "Update";
-        
-        _context.Todos.Update(item);
-        _context.SaveChanges();
         return View();
     }
 
-    public IActionResult Delete(long id)
+    public IActionResult Privacy()
     {
-        var item = _context.Todos.FirstOrDefault(x => x.Id == id);
-        _context.Todos.Remove(item);
-        _context.SaveChanges();
         return View();
     }
     
-    
-    public IActionResult Add()
-    {
-        var todo = new Todo()
-        {
-            Title = "x",
-            Description = "y",
-            IsCompleted = false
-        };
-        _context.Todos.Add(todo);
-        _context.SaveChanges();
-        return View();
-    }
-
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
     {
