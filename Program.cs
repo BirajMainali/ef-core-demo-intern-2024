@@ -1,6 +1,10 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Efcore_demo.Data;
+using Efcore_demo.Repositories;
+using Efcore_demo.Repositories.Interfaces;
+using Efcore_demo.Services;
+using Efcore_demo.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +14,8 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(connectionString));
+builder.Services.AddScoped<ITodoService, TodoService>();
+builder.Services.AddScoped<ITodoRepository, TodoRepository>();
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
@@ -40,7 +46,7 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Todo}/{action=GetTodos}/{id?}");
 app.MapRazorPages();
 
 app.Run();
