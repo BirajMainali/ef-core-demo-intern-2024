@@ -45,7 +45,7 @@
                                        onchange="updateStatus(@item.Id, this)"
                                        class="form-check-input me-2" />
                              <a asp-controller="Todo" asp-action="TodoStatus" asp-route-id="@item.Id" >
-                             <span class="status-label @(item.Status ? "completed" : "pending")">
+                             <span class="btn status-label @(item.Status ? "completed" : "pending")">
                                  @(item.Status ? "✔ Completed" : "● Pending")
                              </span>
                              </a>
