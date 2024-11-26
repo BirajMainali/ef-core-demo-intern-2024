@@ -6,4 +6,7 @@ public interface IFoodRepository
 {
     List<FoodDto>GetAll();
 
+    FoodDto GetbySn(Guid id);
+    void Delete(Guid id); 
+
 }

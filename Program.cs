@@ -47,6 +47,6 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=FoodController1}/{action=Create}/{id?}");
-app.MapRazorPages();
+
 
 app.Run();
