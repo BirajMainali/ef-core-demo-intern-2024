@@ -1,0 +1,15 @@
+@model FoodVm
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+<h2>title</h2>
+<form>
+    <input type="text" asp-for="FoodName" placeholder="Food Name"/>
+    <br/>
+    <input type="number" asp-for="Price" placeholder="enter price"/>
+    <br/>
+    <input type="date" asp-for="ExpiryDate"/>
+    <button type="submit">submit</button>
+</form>

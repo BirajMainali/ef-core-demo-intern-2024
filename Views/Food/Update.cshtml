@@ -1,0 +1,34 @@
+@model FoodDto
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+<h2>title</h2>
+<h1>Edit Food</h1>
+
+<form method="post">
+    <input type="hidden" asp-for="Sn" />
+
+    <div>
+        <label asp-for="FoodName"></label>
+
+        <input type="text" asp-for="FoodName" />
+    </div>
+
+    <div>
+        <label asp-for="Price"></label>
+        <input type="text" asp-for="Price" />
+    </div>
+
+    <div>
+        <label asp-for="ExpiryDate"></label>
+
+        <input type="text" asp-for="ExpiryDate"/>
+
+    </div>
+
+    <button type="submit">Update</button>
+</form>
+
