@@ -9,39 +9,47 @@ namespace Efcore_demo.Repositories
 {
     public class TodoRepository : ITodoRepository
     {
+        private readonly ILogger<TodoRepository> _logger;
+
+        private readonly ApplicationDbContext _context;
+        public TodoRepository(ILogger<TodoRepository> logger, ApplicationDbContext context)
+        {
+            _logger = logger;
+            _context = context;
+        }
         public List<TodoDto> GetAll()
         {
-            return Database.Todos.ToList();
+            return _context.Todo.ToList();
         }
         public List<TodoDto> FilterTodo( String status)
         {
             if (status == "pending")
             {
-                return Database.Todos.Where(todo=> todo.Status==false).ToList();
+                return _context.Todo.Where(todo=> todo.Status==false).ToList();
             }
             else if (status == "completed")
             {
-                return Database.Todos.Where(todo=> todo.Status==true).ToList();
+                return _context.Todo.Where(todo=> todo.Status==true).ToList();
                 
             }
             else
             {
-                return Database.Todos.ToList();
+                return _context.Todo.ToList();
             }
             
         }
 
         public TodoDto GetbyId(Guid id)
         {
-            return Database.Todos.FirstOrDefault(t => t.Id == id);
+            return _context.Todo.FirstOrDefault(t => t.Id == id);
         }
 
         public void Delete(Guid id)
         {
-            var todo = Database.Todos.FirstOrDefault(t => t.Id == id);
+            var todo = _context.Todo.FirstOrDefault(t => t.Id == id);
             if (todo != null)
             {
-                Database.Todos.Remove(todo);
+                _context.Todo.Remove(todo);
             }
         }
         
