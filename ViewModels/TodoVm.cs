@@ -1,11 +1,9 @@
-﻿namespace Efcore_demo.Entities;
+﻿namespace Efcore_demo.ViewModels;
 
-public class Todo
+public class TodoVm
 {
-    // If we are using Entity Framework, Id becomes the primary key
     public long Id { get; set; }
     public string Title { get; set; }
     public string Description { get; set; }
     public bool IsCompleted { get; set; }
-    
 }

@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Efcore_demo.ViewModels.TodoVm>
+
+@{
+    ViewData["Title"] = "Todos";
+}
+
+<h2>Todos</h2>
+
+<a asp-action="Create" class="btn btn-primary my-4">Create New Todo</a>
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Status</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var todo in Model)
+    {
+        var status = @todo.IsCompleted ? "Completed" : "Not Completed";
+        
+        <tr>
+            <td>@todo.Title</td>
+            <td>@todo.Description</td>
+            <td>@status</td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@todo.Id" class="btn btn-sm btn-warning m-1">Edit</a> 
+                <a asp-action="Delete" asp-route-id="@todo.Id" class="btn btn-sm btn-danger m-1">Delete</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
