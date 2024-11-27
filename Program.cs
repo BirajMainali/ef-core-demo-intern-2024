@@ -12,8 +12,7 @@ var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ??
                        throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseNpgsql(connectionString));
+builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(connectionString));
 builder.Services.AddScoped<ITodoService, TodoService>();
 builder.Services.AddScoped<ITodoRepository, TodoRepository>();
 
@@ -46,7 +45,7 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Todo}/{action=GetTodos}/{id?}");
+    pattern: "{controller=Todo}/{action=Index}/{id?}");
 app.MapRazorPages();
 
 app.Run();

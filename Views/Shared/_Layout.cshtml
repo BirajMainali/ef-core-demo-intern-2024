@@ -7,37 +7,90 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
     <link rel="stylesheet" href="~/Efcore_demo.styles.css" asp-append-version="true"/>
+    <style>
+        /* Additional styling for a polished look */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        header .navbar {
+            background-color: #343a40;
+            padding: 0.8rem 1.5rem;
+        }
+
+        header .navbar a.navbar-brand, header .navbar .nav-link {
+            color: #ffffff !important;
+            font-weight: 500;
+        }
+
+        header .navbar a.navbar-brand:hover,
+        header .navbar .nav-link:hover {
+            color: #ffc107 !important;
+        }
+
+        .navbar-toggler {
+            border: none;
+        }
+
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml;charset=UTF8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba(255,255,255,0.7)' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+        }
+
+        footer {
+            background-color: #343a40;
+            color: #ffffff;
+            padding: 1rem 0;
+        }
+
+        footer a {
+            color: #ffc107 !important;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        main {
+            padding: 2rem;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .container {
+            max-width: 1200px;
+        }
+    </style>
 </head>
 <body>
 <header>
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+    <nav class="navbar navbar-expand-sm navbar-dark">
         <div class="container-fluid">
             <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Efcore_demo</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                 <ul class="navbar-nav flex-grow-1">
                     <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        <a class="nav-link" asp-area="" asp-controller="Todo" asp-action="Index">Todos</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                    </li>
+                    
                 </ul>
                 <partial name="_LoginPartial"/>
             </div>
         </div>
     </nav>
 </header>
-<div class="container">
+<div class="container mt-4">
     <main role="main" class="pb-3">
         @RenderBody()
     </main>
 </div>
 
-<footer class="border-top footer text-muted">
+<footer class="text-center mt-5">
     <div class="container">
         &copy; 2024 - Efcore_demo - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
     </div>

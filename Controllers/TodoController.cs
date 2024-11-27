@@ -20,9 +20,19 @@ public class TodoController : Controller
     public ITodoService _todoService { get; }
     public ITodoRepository _todoRepository { get; }
 
+    
+
+    
     public IActionResult Index()
     {
-        return View();
+        var todos = _todoRepository.GetAll();
+        return View(todos);
+    }
+    [HttpPost]
+    public IActionResult Index(string status)
+    {
+        var todos = _todoRepository.FilterTodo(status);
+        return View(todos);
     }
 
     public IActionResult Create()
@@ -42,24 +52,11 @@ public class TodoController : Controller
             };
             _todoService.Create(dto); 
 
-            return RedirectToAction("GetTodos"); 
+            return RedirectToAction("Index"); 
         }
 
         return View(vm); 
     }
-    
-    public IActionResult GetTodos()
-    {
-        var todos = _todoRepository.GetAll();
-        return View(todos);
-    }
-    [HttpPost]
-    public IActionResult GetTodos(string status)
-    {
-        var todos = _todoRepository.FilterTodo(status);
-        return View(todos);
-    }
-
     public IActionResult Update(Guid id)
     {
         var todo = _todoRepository.GetbyId(id);
@@ -78,7 +75,7 @@ public class TodoController : Controller
         if (ModelState.IsValid)
         {
             _todoService.Update(dto);
-            return RedirectToAction("GetTodos");
+            return RedirectToAction("Index");
         }
 
         return View(dto); 
@@ -92,7 +89,7 @@ public class TodoController : Controller
         if (id != null)
         {
             _todoService.Delete(id);
-            return RedirectToAction("GetTodos");
+            return RedirectToAction("Index");
         }
         else
         {
@@ -108,7 +105,7 @@ public class TodoController : Controller
             _todoService.UpdateStatus(id);
         }
 
-        return RedirectToAction("GetTodos");
+        return RedirectToAction("Index");
     }
 
     
