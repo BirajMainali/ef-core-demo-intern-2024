@@ -1,0 +1,22 @@
+﻿@model Efcore_demo.DTOs.TodoDto;
+
+<h2 class="mb-4"> Create New Todo</h2>
+
+<form asp-action="Create" method="post" class="bg-light p-4 rounded shadow-sm w-50">
+    <div class="mb-3">
+        <label class="form-label">Title</label>
+        <input type="text" class="form-control" placeholder="Enter the title of the todo" asp-for="Title" required />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Description</label>
+        <textarea asp-for="Description" class="form-control" placeholder="Enter a description" rows="3"></textarea>
+    </div>
+
+    <div class="form-check mb-3">
+        <input type="checkbox" asp-for="IsCompleted" class="form-check-input" />
+        <label class="form-check-label user-select-none" asp-for="IsCompleted">Completed</label>
+    </div>
+
+    <button type="submit" class="btn btn-success mt-3">Create Todo</button>
+</form>

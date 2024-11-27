@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Efcore_demo.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241122134855_add todo")]
-    partial class addtodo
+    [Migration("20241126160703_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

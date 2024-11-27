@@ -1,0 +1,26 @@
+﻿@model Efcore_demo.ViewModels.TodoVm;
+
+@{
+    ViewData["Title"] = "Edit Todo";
+}
+
+<h2 class="mb-4"> Edit Todo</h2>
+
+<form asp-action="Edit" method="post" class="bg-light p-4 rounded shadow-sm w-50">
+    <div class="mb-3">
+        <label  class="form-label">Title</label>
+        <input asp-for="Title" class="form-control" value="@Model.Title" required />
+    </div>
+
+    <div class="mb-3">
+        <label  class="form-label">Description</label>
+        <textarea asp-for="Description" class="form-control" rows="3">@Model.Description</textarea>
+    </div>
+
+    <div class="form-check mb-3">
+        <input class="form-check-input" asp-for="IsCompleted" />
+        <label class="form-check-label user-select-none" asp-for="IsCompleted">Completed</label>
+    </div>
+
+    <button type="submit" class="btn btn-warning">Save Changes</button>
+</form>
