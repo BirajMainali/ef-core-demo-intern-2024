@@ -2,7 +2,7 @@
 
 <h2>Todos</h2>
 
-<!-- Check if there are no todos -->
+
 @if (!Model.Any())
 {
     <div class="alert alert-warning" role="alert">
@@ -15,7 +15,7 @@ else
         <a href="@Url.Action("Create")" class="btn btn-primary">Create New Todo</a>
     </p>
 
-    <!-- Display Todos in Table -->
+   
     <table class="table">
         <thead>
         <tr>
@@ -35,7 +35,7 @@ else
                 <td>
                     <a href="@Url.Action("Edit", new { id = todo.Id })" class="btn btn-warning btn-sm">Edit</a> |
 
-                    <!-- Mark as Completed Button -->
+                    
                     @if (!todo.IsCompleted)
                     {
                         <form method="post" asp-action="MarkAsCompleted" asp-route-id="@todo.Id" style="display:inline;" onsubmit="return confirm('Are you sure you want to mark this todo as completed?');">
@@ -43,7 +43,7 @@ else
                         </form>
                     }
 
-                    <!-- Delete Form -->
+                  
                     <form method="post" asp-action="Delete" asp-route-id="@todo.Id" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this todo?');">
                         <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                     </form>

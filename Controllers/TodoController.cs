@@ -1,7 +1,7 @@
 ﻿using Efcore_demo.Data;
 using Efcore_demo.Entities;
 using Microsoft.AspNetCore.Mvc;
-using Efcore_demo.Models; // Assuming we create a TodoViewModel
+using Efcore_demo.Models; 
 
 namespace Efcore_demo.Controllers
 {
@@ -14,20 +14,20 @@ namespace Efcore_demo.Controllers
             _context = context;
         }
 
-        // READ: Show list of todos
+        
         public IActionResult Index()
         {
             var todos = _context.Todos.ToList();
             return View(todos);
         }
 
-        // CREATE: Show create todo form
+        
         public IActionResult Create()
         {
             return View();
         }
 
-        // CREATE: Save new todo
+       
         [HttpPost]
         public IActionResult Create(TodoViewModel todoVM)
         {
@@ -37,7 +37,7 @@ namespace Efcore_demo.Controllers
                 {
                     Title = todoVM.Title,
                     Description = todoVM.Description,
-                    IsCompleted = false // Default to false when creating a new todo
+                    IsCompleted = false 
                 };
 
                 _context.Todos.Add(todo);
@@ -45,10 +45,10 @@ namespace Efcore_demo.Controllers
 
                 return RedirectToAction("Index");
             }
-            return View(todoVM); // If model validation fails, return with the same data
+            return View(todoVM); 
         }
 
-        // EDIT: Show edit form for a specific todo
+        
         public IActionResult Edit(long id)
         {
             var todo = _context.Todos.FirstOrDefault(t => t.Id == id);
@@ -79,10 +79,10 @@ namespace Efcore_demo.Controllers
                     return NotFound();
                 }
 
-                // Update the fields including the IsCompleted checkbox
+                
                 todo.Title = todoVM.Title;
                 todo.Description = todoVM.Description;
-                todo.IsCompleted = todoVM.IsCompleted;  // This will update the completion status
+                todo.IsCompleted = todoVM.IsCompleted; 
 
                 _context.Todos.Update(todo);
                 _context.SaveChanges();
@@ -94,7 +94,7 @@ namespace Efcore_demo.Controllers
         }
 
 
-        // DELETE: Delete a specific todo
+       
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Delete(long id)
@@ -108,7 +108,7 @@ namespace Efcore_demo.Controllers
             return RedirectToAction(nameof(Index)); // Redirect to the index after deleting
         }
 
-        // MARK AS COMPLETED: Toggle completion status of a todo
+       
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult MarkAsCompleted(long id)
@@ -116,11 +116,11 @@ namespace Efcore_demo.Controllers
             var todo = _context.Todos.FirstOrDefault(x => x.Id == id);
             if (todo != null)
             {
-                todo.IsCompleted = true; // Mark as completed
+                todo.IsCompleted = true; 
                 _context.Todos.Update(todo);
                 _context.SaveChanges();
             }
-            return RedirectToAction(nameof(Index)); // Redirect to the index after marking as completed
+            return RedirectToAction(nameof(Index)); 
         }
     }
 }
