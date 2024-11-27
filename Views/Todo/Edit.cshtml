@@ -1,0 +1,20 @@
+﻿@model Efcore_demo.Models.TodoViewModel
+
+<h2>Edit Todo</h2>
+
+<form asp-action="Edit" method="post">
+    <div class="form-group">
+        <label for="Title">Title</label>
+        <input type="text" id="Title" name="Title" class="form-control" value="@Model.Title" required />
+    </div>
+    <div class="form-group">
+        <label for="Description">Description</label>
+        <input type="text" id="Description" name="Description" class="form-control" value="@Model.Description" required />
+    </div>
+    <div class="form-group">
+        <label for="IsCompleted">Completed</label>
+        <!-- Use asp-for to bind the checkbox to the IsCompleted field -->
+        <input type="checkbox" id="IsCompleted" name="IsCompleted" @(Model.IsCompleted ? "checked" : "") />
+    </div>
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+</form>
